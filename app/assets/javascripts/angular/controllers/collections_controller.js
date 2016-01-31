@@ -19,29 +19,6 @@ myApp.factory('Collection', ['$resource', function($resource){
 }]);
 
 //
-//routes
-//
-myApp.config([
-  '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider.when('/collections',{
-      templateUrl: '/templates/collections/index.html',
-      controller: 'CollectionListCtr'
-    });
-    $routeProvider.when('/collections/new', {
-     templateUrl: '/templates/collections/new.html',
-     controller: 'CollectionAddCtr'
-    });
-    $routeProvider.when('/collections/:id/edit', {
-     templateUrl: '/templates/collections/edit.html',
-     controller: "CollectionUpdateCtr"
-    });
-    $routeProvider.otherwise({
-     redirectTo: '/collections'
-    });
-  }
-]);
-
-//
 //actions
 //
 myApp.controller("CollectionListCtr", ['$scope', '$resource', 'Collections', 'Collection', '$location', function($scope, $resource, Collections, Collection, $location) {
@@ -84,3 +61,27 @@ myApp.controller("CollectionListCtr", ['$scope', '$http', '$resource', 'Collecti
     }
   };
 }]);
+
+//
+//routes
+//
+myApp.config([
+  '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $routeProvider.when('/collections',{
+      templateUrl: '/templates/collections/index.html',
+      controller: 'CollectionListCtr'
+    });
+    $routeProvider.when('/collections/new', {
+     templateUrl: '/templates/collections/new.html',
+     controller: 'CollectionAddCtr'
+    });
+    $routeProvider.when('/collections/:id/edit', {
+     templateUrl: '/templates/collections/edit.html',
+     controller: "CollectionUpdateCtr"
+    });
+    $routeProvider.otherwise({
+     redirectTo: '/collections'
+    });
+  }
+]);
+
