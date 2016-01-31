@@ -4,7 +4,7 @@ var myApp = angular.module('myapplication', ['ngRoute', 'ngResource']);
 //factories
 //
 myApp.factory('Collections', ['$resource',function($resource){
-  return $resource('/collections.json', {},{
+  return $resource('/collections', {},{
     query: { method: 'GET', isArray: true },
     create: { method: 'POST' }
   })
@@ -51,7 +51,7 @@ myApp.controller("CollectionListCtr", ['$scope', '$resource', 'Collections', 'Co
 myApp.controller("CollectionAddCtr", ['$scope', '$resource', 'Collections', '$location', function($scope, $resource, Collections, $location) {
   $scope.save = function () {
     if ($scope.collectionForm.$valid){
-      Collections.create({collection: $scope.collection}, function(){
+      Collections.create({contractno: $scope.collectionForm.contractno.$viewValue, kode_cabang: $scope.collectionForm.kode_cabang.$viewValue}, function(){
       $location.path('/');
     }, function(error){
       console.log(error)
@@ -64,7 +64,7 @@ myApp.controller("CollectionUpdateCtr", ['$scope', '$resource', 'Collection', '$
    $scope.collection = Collection.get({id: $routeParams.id})
    $scope.update = function(){
      if ($scope.collectionForm.$valid){
-       Collection.update($scope.collection,function(){
+       Collection.update({id: $scope.collection.contractno},{contractno: $scope.collectionForm.contractno.$viewValue, kode_cabang: $scope.collectionForm.kode_cabang.$viewValue},function(){
          $location.path('/');
        }, function(error) {
          console.log(error)

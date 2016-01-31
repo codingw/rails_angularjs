@@ -19,14 +19,22 @@ class CollectionsController < ApplicationController
     respond_with @collection
   end
 
+  def create
+    @collection = Collection.new collection_params
+    if @collection.save
+      respond_with @collection
+    else
+      render json: [message: "failed created collection"]
+    end
+  end
+
   def update
     @collection = Collection.find_by(contractno: params[:id])
     if @collection.update_attributes(collection_params)
-      render json: [contractno: params[:id], message: "collection with contractno #{params[:id]} has been deleted"]
+      respond_with @collection.reload
     else
-      render json: [message: "failed delete collection with contractno #{params[:id]}"]
+      render json: [message: "failed update collection"]
     end
-    
   end
 
   def destroy
@@ -45,7 +53,8 @@ class CollectionsController < ApplicationController
 
   private
   def collection_params
-    params.require(:collection).permit(
+    # params.fetch(:collection, {}).permit(:contractno, :kode_cabang)
+    params.fetch(:collection, {}).permit(
       :id, :area_new3, :area_arm_2, :bran_br_name, :contractno, :kode_cabang, :objtdesc, :bal_prin,
       :arec_appl_no, :day, :bucket, :reqdate, :nama_remedia, :jatuh_tempo_ang_tertunggak, :installment_no,
       :area_collection, :cust_name, :status
