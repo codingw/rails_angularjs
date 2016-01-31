@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #add from me
 gem 'responders', '~> 2.0' 
 gem 'kaminari'
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails' #for bootstrap UI
 
 group :development, :test do
   gem 'faker'
