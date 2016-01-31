@@ -31,7 +31,7 @@ class CollectionsController < ApplicationController
   def update
     @collection = Collection.find_by(contractno: params[:id])
     if @collection.update_attributes(collection_params)
-      respond_with @collection.reload
+      render json: @collection.reload
     else
       render json: [message: "failed update collection"]
     end

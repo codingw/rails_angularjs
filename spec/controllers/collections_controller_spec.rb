@@ -44,7 +44,7 @@ describe CollectionsController do
     let(:collection_attributes) { attributes_for :collection }
     context 'with valid attributes' do
       before(:each) { patch :update, id: collection.contractno, collection: collection_attributes }
-      it { should respond_with :ok }
+      it { is_expected.to respond_with :ok }
     end
 
     context 'with invalid attributes' do
