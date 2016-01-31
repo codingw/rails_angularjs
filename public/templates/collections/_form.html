@@ -1,0 +1,22 @@
+<div class="form-group" ng-class="{'has-error' : submitted && collectionForm.contractno.$invalid}">
+    <label class="control-label col-md-3">Contract<span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="contractno" class="form-control" ng-model="collection.contractno" required placeholder="first name"/>
+    </div>
+    <p ng-show=" submitted && collectionForm.contractno.$invalid" class="help-block">First name is required.</p>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && collectionForm.kode_cabang.$invalid}">
+    <label class="control-label col-md-3">Kode Cabang <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="kode_cabang" class="form-control" ng-model="collection.kode_cabang" required placeholder="last name"/>
+    </div>
+    <p ng-show=" submitted && collectionForm.kode_cabang.$invalid" class="help-block">Last name is required.</p>
+</div>
+
+<div class="form-group">
+    <div class="pull-left">
+        <a class="btn btn-default" href="/"> Back</a>
+        <button type="submit" class="btn btn-primary" ng-click="submitted=true">Submit</button>
+    </div>
+</div>
+

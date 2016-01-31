@@ -1,0 +1,23 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="block">Collections</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Kode Cabang</th>
+                <th>Contract</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="collections.length" >
+                <td colspan="5">No collections found, Please create one.</td>
+            </tr>
+            <tr ng-show="collections.length" ng-repeat="collection in collections">
+                <td>{{collection.kode_cabang}}</td>
+                <td>{{collection.contractno}}</td>
+                <td>
+                    <a href="#/collections/{{collection.contractno}}/edit">Edit</a> | <a href="" ng-click="deleteCollection(collection.contractno)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

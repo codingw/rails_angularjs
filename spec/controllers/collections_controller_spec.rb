@@ -56,6 +56,6 @@ describe CollectionsController do
   describe 'DELETE /destroy' do
     let(:auth_headers) { { 'AUTHORIZATION' => 'Token token="foobar"' } }
     before(:each) { delete :destroy, id: collection.contractno, format: :json }
-    it { is_expected.to respond_with :ok }
+    it { is_expected.to respond_with 204 }
   end
 end

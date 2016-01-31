@@ -31,8 +31,16 @@ class CollectionsController < ApplicationController
 
   def destroy
     @collection = Collection.find_by(contractno: params[:id])
-    @collection.destroy
-    render json: [contractno: params[:id], message: "collection with contractno #{params[:id]} has been deleted"]
+    if @collection.destroy
+      limit = params[:limit] || 10
+      if params[:paid] == true
+        @collections = Collection.paid
+      else
+        @collections = Collection.unpaid
+      end
+      @collecitions = @collections.page(params[:page]).per(limit)
+      respond_with @collections
+    end
   end
 
   private
